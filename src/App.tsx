@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Button } from '@mui/material';
 
 interface MyButtonInput {
-	count: any;
-	onClick: any;
+	count: number;
+	onClick: () => void;
 }
 
-function App() {
+const App = () => {
 	const [count, setCount] = useState(0);
 
 	function handleClick() {
@@ -14,15 +15,32 @@ function App() {
 	}
 
 	return (
-		<div className="App">
-			<MyButton count={count} onClick={handleClick} />
-			<MyButton count={count} onClick={handleClick} />
+		<div>
+			<div className="App">
+				<MyButton count={count} onClick={handleClick} />
+				<MyButton count={count} onClick={handleClick} />
+			</div>
+			<div>
+				<TextField firstName="Patrick" lastName="Zhao" />
+			</div>
 		</div>
 	);
-}
+};
 
-function MyButton(myButtonInput: MyButtonInput) {
-	return <button onClick={myButtonInput.onClick}>Clicked {myButtonInput.count} times</button>;
-}
+const MyButton = (myButtonInput: MyButtonInput) => {
+	return (
+		<Button variant="outlined" onClick={myButtonInput.onClick}>
+			Clicked {myButtonInput.count} times
+		</Button>
+	);
+};
+
+const TextField = (textFieldInput: { firstName: string; lastName: string }) => {
+	return (
+		<p>
+			{textFieldInput.firstName} {textFieldInput.lastName}
+		</p>
+	);
+};
 
 export default App;
