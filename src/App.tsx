@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button } from '@mui/material';
+import { Gallery } from './Gallery';
 
 interface MyButtonInput {
 	count: number;
 	onClick: () => void;
 }
 
-const App = () => {
+export const App = () => {
 	const [count, setCount] = useState(0);
 
 	function handleClick() {
@@ -15,7 +16,7 @@ const App = () => {
 	}
 
 	return (
-		<div>
+		<>
 			<div className="App">
 				<MyButton count={count} onClick={handleClick} />
 				<MyButton count={count} onClick={handleClick} />
@@ -23,7 +24,10 @@ const App = () => {
 			<div>
 				<TextField firstName="Patrick" lastName="Zhao" />
 			</div>
-		</div>
+			<div>
+				<Gallery />
+			</div>
+		</>
 	);
 };
 
@@ -42,5 +46,3 @@ const TextField = (textFieldInput: { firstName: string; lastName: string }) => {
 		</p>
 	);
 };
-
-export default App;
