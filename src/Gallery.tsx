@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 
 interface Scientist {
 	name: string;
@@ -50,14 +50,15 @@ const scientists: Array<Scientist> = [
 	},
 ];
 
-interface IProfileProps {
+interface Props {
 	scientist: Scientist;
 }
 
-const Profile = ({ scientist }: IProfileProps) => {
+const Profile: React.FC<PropsWithChildren<Props>> = ({ children, scientist }) => {
 	return (
 		<>
 			<section className="profile">
+				{children}
 				<h2>{scientist.name}</h2>
 				<img
 					className="avatar"
@@ -92,7 +93,9 @@ export const Gallery = () => {
 			{scientists.map((s: Scientist, i: number) => {
 				return (
 					<div key={i}>
-						<Profile scientist={s} />
+						<Profile scientist={s}>
+							<h1> This is Patpat</h1>
+						</Profile>
 					</div>
 				);
 			})}
